@@ -52,4 +52,22 @@ const Nav = ({
     );
 }
 
-export default Nav;
+
+
+const Nav2 = (props) => {
+    const { t1, t2, t3 } = props;
+    return (
+        < >
+            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+                 t1 = {t1} <br />
+                 t2 = {t2} <br />
+                 t3 = {t3} <br />
+            </nav>
+        </>
+    );
+}
+
+
+
+
+export { Nav, Nav2 }; // Export Nav2 if needed

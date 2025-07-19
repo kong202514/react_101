@@ -1,31 +1,54 @@
 import { useState } from "react"
 
-function input() {
-    const [text, set_text] = useState(" ");
-    let [texts, set_texts] = useState(" ");
-  
+function Input() {
+    const [data, set_data] = useState({
+        name: "",
+        age:  "",
 
-    if (text == 1 ) {
-        set_texts("qqqq")
-        
-    } else {
-        
+    });
+
+
+    function onChange_data(event) {
+      
+        // console.log("key--->",event.target.name);
+        const { name, value } = event.target;
+
+
+    //    console.log("value--->", value);
+
+        set_data(() => ({  ...data, [name]: value })); // ใช้ [name] เพื่อให้สามารถใช้ชื่อของ input ได้
+
     }
+
     return (
 
         < >
+            is input <br />
             <input type="text"
-                value={text}
-                onChange={(text) => { set_text(text.target.value) } }
-            /> <br /> <br />
+                name="name"
+                value={data.name}
+                onChange={onChange_data}
+            />
+
+
+            <br /> <br />
+            <input type="text"
+                name="age"
+                value={data.age}
+                onChange={onChange_data}
+            />
+
+
+
             <button type="button">btt</button>
-            
-            text =  {texts}
+            <br />
+
+            name = {data.name} <br />
+            age =  {data.age} <br />
 
         </>
     )
+
 }
 
-
-
-export default input
+export default Input
