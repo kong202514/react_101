@@ -1,50 +1,49 @@
-import { useState } from "react"
 
-function Input() {
-    const [data, set_data] = useState({
+import { React, useState } from "react"
+
+
+export default function Input() {
+
+    
+
+    const [data, setData] = useState({
         firstName: "",
         lastName: "",
-        age: ""
-
+        age: 0
     });
 
 
-    function onChange_data(event) {
+    const from_on_Change = (e) => {
+        let { name, value } = e.target
+        setnew_data({
+            ...new_data,
+            [name]: value
+        })
 
-        const { name, value } = event.target;
-        set_data(() => ({ ...data, [name]: value })); // ใช้ [name] เพื่อให้สามารถใช้ชื่อของ input ได้
 
     }
-
     return (
-
         < >
-
-            <p  >
-                firstName:<input type="text"
-                    name="firstName "
+            <div >
+                <h1>Input Component</h1>
+                <input type="text"
+                    name="firstName"
                     value={data.firstName}
-                    onChange={onChange_data}
-                /> <br />
-
-
-                lastName:<input type="text"
-                    name="lastName "
+                    onChange={from_on_Change}
+                />
+                <input type="text"
+                    name="lastName"
                     value={data.lastName}
-                    onChange={onChange_data}
-                /><br />
-
-                text:<input type="text"
-                    name="age "
+                    onChange={from_on_Change}
+                />
+                <input type="number"
+                    name="age"
                     value={data.age}
-                    onChange={onChange_data}
-                /><br />
+                    onChange={from_on_Change}
+                />
 
-            </p>
 
+            </div>
         </>
     )
-
 }
-
-export default Input

@@ -1,54 +1,45 @@
 import { useState } from "react"
 
 function Input() {
-    const [data, set_data] = useState({
-        name: "",
-        age:  "",
+    let [new_data, set_new_data] = useState({
+        name: " ",
+        age: 0
+    })
+    let [data, set_data] = useState([])
 
-    });
+    const from_on_Change = (e) => {
+        let { name, value } = e.target
+        set_new_data({ ...new_data, [name]: value })
+    }
 
-
-    function onChange_data(event) {
-      
-        // console.log("key--->",event.target.name);
-        const { name, value } = event.target;
-
-
-    //    console.log("value--->", value);
-
-        set_data(() => ({  ...data, [name]: value })); // ใช้ [name] เพื่อให้สามารถใช้ชื่อของ input ได้
-
+    function from_submit(e) {
+        e.preventDefault();
+        set_data([...data, new_data])
     }
 
     return (
 
         < >
-            is input <br />
-            <input type="text"
-                name="name"
-                value={data.name}
-                onChange={onChange_data}
-            />
+
+            <form onSubmit={from_submit}>
+                <input type="text"
+                    name="name"
+                    value={new_data.name}
+                    onChange={from_on_Change} />
+                <input type="number"
+                    name="age"
+                    value={new_data.age}
+                    onChange={from_on_Change} />
+                <button type="submit">Submit</button>
+            </form>
 
 
-            <br /> <br />
-            <input type="text"
-                name="age"
-                value={data.age}
-                onChange={onChange_data}
-            />
-
-
-
-            <button type="button">btt</button>
-            <br />
-
-            name = {data.name} <br />
-            age =  {data.age} <br />
-
+            <ul>
+                {data.map((item, index) => <li key={index}>{item.name} - {item.age}</li>)}
+            </ul>
         </>
     )
-
 }
+
 
 export default Input
